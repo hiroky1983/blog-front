@@ -1,22 +1,14 @@
 import Head from "next/head";
 import React from "react";
-import Axios from "axios";
-
-const axios = Axios.create({
-  baseURL: process.env.API_URL,
-  headers: {
-    "X-Requested-With": "XMLHttpRequest",
-  },
-  withCredentials: true,
-});
+import { axios } from "../libs/axios";
 
 export default function Home() {
   const [blog, setBlog] = React.useState([]);
 
   const getBlog = async () => {
     const req = await axios.get("http://localhost:8888/api/blog");
+    console.log(req);
     const res = req.data;
-    console.log(res);
     setBlog(res);
   };
 
